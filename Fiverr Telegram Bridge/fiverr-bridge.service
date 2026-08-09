@@ -1,0 +1,17 @@
+[Unit]
+Description=Fiverr <-> Telegram bridge
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Adjust this path to wherever you deploy the project on the VPS
+WorkingDirectory=/opt/fiverr-bridge
+ExecStart=/opt/fiverr-bridge/venv/bin/python3 /opt/fiverr-bridge/main.py
+Restart=always
+RestartSec=5
+StandardOutput=append:/opt/fiverr-bridge/bridge.log
+StandardError=append:/opt/fiverr-bridge/bridge.log
+
+[Install]
+WantedBy=multi-user.target
